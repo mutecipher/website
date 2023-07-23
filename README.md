@@ -1,7 +1,7 @@
 # mutecipher.com
 
 [![Deployment](https://github.com/mutecipher/website/actions/workflows/deploy.yml/badge.svg)](https://github.com/mutecipher/website/actions/workflows/deploy.yml)
-[![Ruby on Rails CI](https://github.com/mutecipher/website/actions/workflows/rubyonrails.yml/badge.svg?branch=main)](https://github.com/mutecipher/website/actions/workflows/rubyonrails.yml)
+[![Ruby on Rails CI](https://github.com/mutecipher/website/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/mutecipher/website/actions/workflows/rubyonrails.yml)
 
 Personal site/website written in Ruby on Rails.
 
