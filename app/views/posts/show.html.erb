@@ -1,0 +1,15 @@
+<%= content_for :head do %>
+  <%= render Head.new(title: @post.title.titlecase) %>
+<% end %>
+<%= render Breadcrumb.new do |component| %>
+  <% component.with_crumb(href: root_path) do %>
+    <%= I18n.t("breadcrumb.home") %>
+  <% end %>
+  <% component.with_crumb(href: posts_path) do %>
+    <%= I18n.t("breadcrumb.posts") %>
+  <% end %>
+  <% component.with_crumb(href: post_path(@post), active: true) do %>
+    <%= @post.title %>
+  <% end %>
+<% end %>
+<%= render Blog::Post.new(post: @post) %>

@@ -1,0 +1,15 @@
+<div class="grid h-screen px-4 place-items-center">
+  <div class="container text-center">
+    <div class="flex justify-center py-4">
+      <%= image_tag("hacker_cat.webp", class: "w-64 h-auto") %>
+    </div>
+    <h1 class="font-mono text-6xl">404</h1>
+    <p class="font-mono text-2xl">Page Not Found</p>
+    <%= render Link.new(href: root_path, underline: true) do %>
+      <div class="flex items-center justify-center pt-8 space-x-2">
+        <span>Return home</span>
+        <%= render Icon.new(icon: :arrow_uturn, size: :small) %>
+      </div>
+    <% end %>
+  </div>
+</div>

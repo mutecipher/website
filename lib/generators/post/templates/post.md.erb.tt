@@ -1,0 +1,12 @@
+---
+title: <%= name.titlecase %>
+description: |
+  <!-- TODO: Fill this out with a TL;DR -->
+slug: <%= name.downcase.gsub(' ', '-') %>
+published: false
+date: <%= Time.zone.now.utc %>
+tags:<% tags.each do |tag| %>
+  - <%= tag %><% end %>
+---
+
+<!-- Write some thoughts -->

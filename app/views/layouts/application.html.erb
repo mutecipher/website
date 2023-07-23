@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application.rouge", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= yield :head %>
+  </head>
+  <body class="w-full font-sans antialiased bg-white text-zinc-950 scroll-smooth dark:bg-zinc-950 dark:text-zinc-50">
+    <%= render Header.new %>
+    <main class="max-w-3xl px-4 mx-auto">
+      <% if notice %>
+        <%= render Alert.new(message: notice, type: :success) %>
+      <% end %>
+      <% if alert %>
+        <%= render Alert.new(message: alert, type: :danger) %>
+      <% end %>
+      <%= yield %>
+    </main>
+    <%= render Footer.new %>
+  </body>
+</html>

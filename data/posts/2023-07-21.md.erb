@@ -1,0 +1,44 @@
+---
+title: Introduction
+description: |
+  Hey, welcome to my blog. Quick little introduction about myself and how I got into
+  software development.
+slug: introduction
+published: false
+date: 2023-07-21 04:56:58 UTC
+tags:
+  - introduction
+---
+
+<%= render Memoji.new(size: :xlarge) %>
+
+## 👋 Hey
+
+I'm Cory. I'm a software developer out of Canada.
+
+I like writing Ruby and recently have been getting more interested in front end development using React and Next.js.
+
+If you're reading this, it's because apparently you were pretty eager, and found the staging environment ahead of time. Which is fine. This is really more of a place for me to just dump some stuff and make sure everything is working as intended before I merge into `main`.
+
+### YouTube embed example
+
+<figure class="flex justify-center aspect-video">
+  <iframe src="https://www.youtube-nocookie.com/embed/jjMbPt_H3RQ" frameborder="0" allowfullscreen></iframe>
+</figure>
+
+### CodePen example
+
+<p data-height="431" data-theme-id="dark" data-slug-hash="OXzjLL" data-default-tab="html,result" data-user="virtuacreative" data-embed-version="2" class="codepen">
+  See the Pen <a href="http://codepen.io/virtuacreative/pen/OXzjLL/">Dog</a> by Virtua Creative (<a href="http://codepen.io/virtuacreative">@virtuacreative</a>) on <a href="http://codepen.io">CodePen</a>.
+</p>
+<script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
+
+### Lookbook example
+
+> These will be broken on `staging` and `production` because I don't have a lookbook server set up. ^\_^
+
+<div class="pb-4">
+  <lookbook-embed app="http://localhost:3000/lookbook/" preview="HeaderPreview" scenario="standard"></lookbook-embed>
+</div>
+
+<lookbook-embed app="http://localhost:3000/lookbook/" preview="MemojiPreview" scenario="sizes"></lookbook-embed>

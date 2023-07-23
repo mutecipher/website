@@ -1,0 +1,8 @@
+---
+en:
+  head:
+    title: 
+      default: mutecipher
+      with_post: "%{title} | mutecipher"
+    description: |
+      The personal website of Cory Hutchison

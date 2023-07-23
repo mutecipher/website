@@ -1,0 +1,25 @@
+<%= content_for :head do %>
+  <%= javascript_include_tag("/lookbook-assets/js/lookbook.js") %> <!-- Lookbook helper JS -->
+  <%= javascript_include_tag("https://assets.codepen.io/assets/embed/ei.js") %> <!-- CodePen helper JS -->
+<% end %>
+<section>
+  <div class="py-12 text-center">
+    <% if post.image %>
+      <%= render Blog::Post::Image.new(image: post.image) %>
+    <% end %>
+    <%= render Blog::Post::Title.new do %>
+      <%= post.title %>
+    <% end %>
+    <%= render Blog::Post::PostedAt.new(date: post.created_at) %>
+  </div>
+  <div class="flex flex-row justify-center py-8 space-x-2">
+    <% post.tags.each do |tag| %>
+      <%= render Blog::Post::Tag.new(tag: tag) %>
+    <% end %>
+  </div>
+</section>
+<section class="max-w-3xl prose hover:prose-img:shadow-lg md:prose-lg prose-pre:border dark:prose-pre:border-zinc-700 prose-img:border prose-img:border-zinc-700 prose-img:mx-auto prose-img:rounded-md prose-img:border-1 prose-img:shadow-md dark:prose-invert prose-zinc">
+  <%= render Blog::Post::Body.new do %>
+    <%= post.body.html_safe %>
+  <% end %>
+</section>

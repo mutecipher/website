@@ -1,0 +1,65 @@
+<%= content_for :head do %>
+  <%= render Head.new %>
+<% end %>
+<section id="about" class="py-4">
+  <div class="w-fit">
+    <h1 class="py-2 text-lg font-bold select-none">About Me</h1>
+  </div>
+  <%= render Card.new(hover: false) do |card| %>
+    <%= card.with_body do %>
+      <%= render partial: "about", socials: @socials %>
+    <% end %>
+  <% end%>
+</section>
+<% if @posts.any? %>
+  <section id="latest-posts" class="py-4">
+    <h1 class="py-2 text-lg font-bold select-none">Recent Posts</h1>
+    <% @posts.each do |post| %>
+      <div class="pb-4">
+        <%= render Link.new(href: post_path(post.slug), underline: false) do %>
+          <%= render Card.new do |card| %>
+            <%= card.with_title.with_content(post.title.titlecase) %>
+            <%= card.with_subtitle do %>
+              <%= render Blog::Post::PostedAt.new(date: post.created_at) %>
+            <% end %>
+            <% if post.description.present? %>
+              <%= card.with_body do %>
+                <%= post.description %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="flex justify-end">
+      <%= render Link.new(href: posts_path) do %>
+        <div class="flex items-center space-x-2 text-md">
+          <span>See more</span>
+          <%= render Icon.new(icon: :arrow_uturn, size: :small) %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+<% end %>
+<section id="work-history" class="py-4">
+  <h1 class="py-2 text-lg font-bold select-none">Work History</h1>
+  <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+    <% @jobs.each do |job| %>
+      <div>
+        <%= render Link.new(href: job.href, underline: false, target: "_blank") do %>
+          <%= render Card.new do |card| %>
+            <%= card.with_body do %>
+              <div class="flex items-center justify-center aspect-auto md:aspect-square">
+                <%= render Logo.new(logo: job.company.downcase.to_sym, size: :xlarge) %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+        <div class="px-2 pt-2">
+          <p class="text-sm text-zinc-500"><%= job.title %></p>
+          <p class="text-xs text-zinc-400"><%= job.range %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

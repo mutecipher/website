@@ -1,0 +1,13 @@
+<div class="absolute inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50" >
+  <dialog class="p-4 flex flex-col border-0 rounded-md min-w-[500px] shadow ring-1 ring-zinc-300 bg-zinc-50 <%= size_class %>" open >
+    <% if header %>
+      <%= header %>
+    <% end %>
+    <% if body %>
+      <%= body %>
+    <% end %>
+    <% if footer %>
+      <%= footer %>
+    <% end %>
+  </dialog>
+</div>

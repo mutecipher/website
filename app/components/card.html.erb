@@ -1,0 +1,17 @@
+<article class="relative flex flex-col items-start group">
+  <div class="w-full p-6 group rounded-xl <%= hover ? "hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900" : "" %> <%= ring ? "ring-1 ring-zinc-950/10 dark:ring-zinc-50/10" : "" %>">
+    <% if title %>
+      <h2 class="text-xl font-black tracking-wide md:text-2xl text-zinc-950 dark:text-zinc-50">
+        <%= title %>
+      </h2>
+    <% end %>
+    <% if subtitle %>
+      <h3 class="pb-4 text-xs font-normal md:text-sm text-zinc-400 dark:text-zinc-600">
+        <%= subtitle %>
+      </h3>
+    <% end %>
+    <p class="text-base md:text-lg">
+      <%= body %>
+    </p>
+  </div>
+</article>

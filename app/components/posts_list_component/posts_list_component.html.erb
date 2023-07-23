@@ -1,0 +1,16 @@
+<div class="container w-full">
+  <% @posts.each do |post| %>
+    <div class="py-4">
+      <a href="<%= post_path(post.slug) %>" class="font-bold tracking-wide default-link">
+        <%= post.title %>
+      </a>
+      <div class="flex justify-between">
+        <div class="flex items-center pt-2">
+          <p class="pl-2 text-xs text-zinc-600">
+            <%= distance_of_time_in_words(post.created_at, Time.now).humanize %> ago
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,9 @@
+---
+en:
+  breadcrumb:
+    admin: Admin
+    home: Home
+    logout: Logout
+    new: New
+    posts: Posts
+    sessions: Sessions

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "MonoLisa";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("MonoLisa/MonoLisa-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonoLisa";
+  font-style: bold;
+  font-weight: 400;
+  font-display: block;
+  src: url("MonoLisa/MonoLisa-Bold.ttf") format("truetype");
+}
+
+/* This is a hack found https://github.com/tailwindlabs/tailwindcss/discussions/7806#discussioncomment-2332949 to permit iframe embeds to render correctly in Markdown */
+@layer utilities {
+  .prose :where(iframe):not(:where([class~="not-prose"] *)) {
+    @apply w-full h-auto aspect-video;
+  }
+}

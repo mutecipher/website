@@ -1,0 +1,8 @@
+---
+en:
+  statuses:
+    info: Hello
+    success: Success
+    warning: Warning
+    danger: Danger
+

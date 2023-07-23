@@ -1,0 +1,77 @@
+---
+title: How I made this blog
+description: |
+  Breaking down the steps I went through creating this blog, refactoring the server and building out UI components.
+slug: how-i-made-this-blog-pt-1
+published: false
+date: 2023-07-03 02:30:49 UTC
+tags:
+  - hello
+  - world
+---
+
+I decided to re-write my personal site from scratch, _again_...
+
+I seem to have an annual tradition of deciding that I don't like my site, rip it apart, come up with some fun ideas and try and build it back up again.
+
+I had a standard Rails 6 application for my previous app which was running on Digital Ocean App Service. It felt like overkill for what I was using it for. I've thought about doing some writing for a while now but never really gathered up the courage to do so. I figured if I was going to be running a Rails app for my personal site I might as well go all the way and build out a proper blog. Except I didn't really wanna deal with databases and all that boring shit.
+
+So I started planning out the stuff I wanted to do, learn, etc.
+
+I've been playing around with Next.js/React in my spare time, so I actually considered doing away with Rails all together, and moving over to that. Vercel has a great interface, plugs in _very_ well with GitHub and has a lot of nice to have features I wanted to use.
+
+### Main desires
+
+![giphy](https://media.giphy.com/media/LjV6JxpqzZY1a/giphy.gif)
+
+1. Be able to write in Markdown, with some nice extras (i.e. Frontmatter, ViewComponents, etc.)
+2. Build using design components so I can get more experience with modern Rails front end tooling
+3. Play with some newer technologies.
+
+![test](<%= image_path("masthead.jpeg") %>)
+
+I know there's plenty of static site generators out there (i.e. Jekyll, Middleman, etc.) that could have served the same purpose and probably saved me a lot of time but I get bored easily and I wanted to build something myself. Again.
+
+### Next.js/React
+
+Next.js 13 reminds me that the clock constantly just goes in a circle. Next.js is basically Rails but for JavaScript/TypeScript. It's opinionated, and when you follow convention it works. However, it doesn't have _as many_ things baked in as Rails (maturatity and all). But their scaffolds work very nicely, run quickly, and look pretty good out-of-the-box.
+
+Specifically, their blog scaffold supports MDX out of the box, which is really nice. I like working in a plain text editor when I can. So writing in Markdown is my go-to way to jot things down or dump my thoughts. And being able to render React components within the document without much overhead is a really nice perk.
+
+### Rails on `main`
+
+I've been writing Rails for almost 6 years now. So I'm fairly familiar with how it all works and I'm able to get things working pretty quickly. However, Rails tends to have more than I need in most cases (for personal projects at least). But it is nice to have a lot of tools in your toolbox for when you _might_ need them.
+
+I grew to miss working on the latest versions of Rails at work, which I was fortunate enough to get during my time at Shopify. So this would give me the opportunity to see all the new shiny features and get to tear things apart and figure out how to put them back together again. It's also useful for my career in the off-chance that I ever get to work on a new version of Rails again.
+
+We're also super lucky to have a bunch of new UI frameworks such as View Components and Phlex to choose from for designing isolated UI components to build with. This would give me an opportunity to learn one of those and try and take some of the learnings from the React ecosystem into Rails and try something new.
+
+The one area I wasn't too sure how I was going to tackle was going to be an MDX alternative. Markdown is easy enough to support. We've got some pretty battle-tested Gems at our disposal. But adding some kind of code execution interactivity was going to be something I'd need to try and solve myself (or at least search long enough to find a decent solution).
+
+### Plan of attack
+
+I figured I'd just `rm -rf blog` and `rails new` a new one. But that seemed too easy. Instead I took what I had from my previous blog and took it upon myself to upgrade from Rails 6 to 7, then ultimately on to the `main` branch. I'm in a fortunate situation, that I don't have business critical logic running that could break at any update. So any deprecations or issues that may arise are relatively low risk.
+
+So, of course, I took the harder path.
+
+I ripped out most of my site, until I had it as close to bare bones as a fresh Rails app. Re-introduced Active Support, Active Record, etc. to get everything into a nice state. And made the upgrades.
+
+The upgrades went much smoother than I anticipated, there weren't any Gem incompatibilities. So I was left with a blank slate. But one thing was missing...
+
+I wanted to try and develop this using Docker since that seems to be a thing everyone does these days. Fortunately, Rails added a built-in Dockerfile on Rails `main` so I simply just rendered a new app and snagged the Dockerfile from there. Et Viola and it worked.
+
+After some research, I decided I wanted to go with View Components due to it having been around a bit longer. I think I actually like the syntax of Phlex more, but I've already set myself up for an uphill battle, so didn't want to make it harder.
+
+```ruby
+class Foo
+  def initialize(bar)
+    @bar = bar
+  end
+
+  def hello
+    puts @bar
+  end
+end
+```
+
+<lookbook-embed app="http://localhost:3000/lookbook/" preview="IconPreview" scenario="default"></lookbook-embed>

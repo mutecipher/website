@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+  <body class="w-full font-sans antialiased bg-white text-zinc-950 scroll-smooth dark:bg-zinc-950 dark:text-zinc-50">
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>

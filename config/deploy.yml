@@ -1,0 +1,12 @@
+service: website
+image: ghcr.io/mutecipher/website
+servers:
+  - 134.122.40.79
+registry:
+  server: ghcr.io
+  username: mutecipher
+  password:
+    - MRSK_REGISTRY_PASSWORD
+env:
+  secret:
+    - RAILS_MASTER_KEY

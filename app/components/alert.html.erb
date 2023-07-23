@@ -1,0 +1,13 @@
+<div data-controller="dismissable" class="absolute bottom-0 right-0 max-w-xl flex justify-between items-center <%= classes %>">
+  <div class="flex items-center w-full space-x-4">
+    <%= render Icon.new(icon: type) %>
+    <span>
+      <%= message %>
+    </span>
+  </div>
+  <% if dismissable %>
+    <button data-action="dismissable#close">
+      <span aria-hidden="true" class="text-2xl">&times;</span>
+    </button>
+  <% end %>
+</div>

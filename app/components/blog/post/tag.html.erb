@@ -1,0 +1,5 @@
+<a href="<%= posts_path(tags: [@tag]) %>" class="no-underline">
+  <div class="px-4 py-1 text-xs font-semibold border rounded-full bg-zinc-100/50 hover:bg-zinc-50 border-zinc-300 max-w-fit dark:border-zinc-700 dark:bg-zinc-900 hover:dark:bg-zinc-800">
+    #<%= @tag.downcase %>
+  </div>
+</a>

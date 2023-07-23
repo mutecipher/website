@@ -1,0 +1,20 @@
+<p class="text-base md:text-lg">
+  My name is Cory. I am a Software Developer living and working in Calgary, Alberta, Canada. I've worked at Startups and larger Enterprise companies in a Full Stack, and Backend capacity. I'm currently working as a Software Developer at Weedmaps.
+</p>
+<br/>
+<p class="text-base md:text-lg">
+  Outside of writing code I like to play video games, build custom mechanical keyboards, watch movies, listen to music and consume unhealthy amounts of caffeine.
+</p>
+<br/>
+<p class="text-base md:text-lg">
+  If you're interested in working on a project or just connecting, feel free to reach out to me by email at cory@mutecipher.com or hit me up on any of the social platforms below.
+</p>
+<div>
+  <p class="flex justify-end pt-8 space-x-4">
+    <% @socials.each do |social| %>
+      <% rel = "noopener noreferrer" %>
+      <% rel += " me" if social.name == "Mastodon" %>
+      <%= link_to(render(Logo.new(logo: social.to_sym, size: :small)), social.url.html_safe, target: "_blank", rel:) %>
+    <% end %>
+  </p>
+</div>
