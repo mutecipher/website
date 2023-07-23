@@ -2,7 +2,7 @@
 title: <%= name.titlecase %>
 description: |
   <!-- TODO: Fill this out with a TL;DR -->
-slug: <%= name.downcase.gsub(' ', '-') %>
+slug: <%= slug %>
 published: false
 date: <%= Time.zone.now.utc %>
 tags:<% tags.each do |tag| %>
