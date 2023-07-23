@@ -14,9 +14,6 @@ updates:
       timezone: "America/Edmonton"
     reviewers:
       - "mutecipher"
-    labels:
-      - "ruby"
-      - "dependencies"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -26,6 +23,3 @@ updates:
       timezone: "America/Edmonton"
     reviewers:
       - "mutecipher"
-    labels:
-      - "gh-actions"
-      - "dependencies"
