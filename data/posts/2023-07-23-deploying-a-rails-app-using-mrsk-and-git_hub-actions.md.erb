@@ -1,0 +1,140 @@
+---
+title: Deploying A Rails App Using MRSK And GitHub Actions
+description: |
+  Walkthrough on how to deploy a Rails application using MRSK and GitHub Actions.
+slug: deploying-a-rails-app-using-mrsk-and-github-actions
+published: true
+date: 2023-07-23 23:37:08 UTC
+tags:
+  - deployment
+  - github-actions
+  - mrsk
+  - rails
+---
+
+![giphy](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmc3YmRjbWc2YTJzejQ0MWtreDAxdmg1azBlNnh1djJ6dXU5Y2ZtbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cUMNWzWZ5n75LvcCIe/giphy.gif)
+
+I've been using MRSK for the last few months since it's release to handle deployments for my personal site. With the work I've done re-vamping the site, I decided to take some of the manual work out of the process and set up a continuous deployment pipeline using MRSK and GitHub Actions. It's far from perfect but it works! Here is how I did it.
+
+If you're not familiar with MRSK, please check out the documentation at [mrsk.dev/docs/overview](https://mrsk.dev/docs/overview) before going forward.
+
+## Configuring your server
+
+In order for this to work, you're going to need to set up a new SSH key pair for GitHub Actions to use to properly connect to your server. This can be a manual process, but there are ways to automate some of this process. My setup runs on a single server hosted on Digital Ocean, so it was no effort to configure it manually.
+
+### Generating a new SSH key pair
+
+SSH into your server and then you'll need to run `ssh-keygen` to set up a new SSH key pair.
+
+```shell
+ssh-keygen -C deployment
+# Go through options...
+# As output, you'll receive two files.
+```
+
+> Save these files somewhere secure, such as a password manager.
+
+You should be left with two files, `id_rsa` and `id_rsa.pub` (if you chose the default names).
+
+### Add the public key to the authorized keys for the server
+
+Next, you'll need to add this newly generated public key to the servers `~/.ssh/authorized_keys` file.
+
+```shell
+cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
+```
+
+Before jumping to the next step, make sure you copy the contents of the private key, `~/.ssh/id_rsa`. You will need this when you configure the GitHub Action.
+
+## Setting up the pipeline
+
+With that all set up, you now need to move over to your repo on GitHub. We need to set up some environment variables, and commit the workflow file to your repository.
+
+### Configuring your GitHub repo
+
+From your repo, head to the **Settings** page. Click on **Secrets and variables** and select **Actions** from the dropdown. From here, you're going to need to create three **Environment secrets**.
+
+- `MRSK_REGISTRY_PASSWORD`
+  - If you have MRSK configured already, this should be in your `.env` file.
+- `RAILS_MASTER_KEY`
+  - Same as above. This should already exist in you `.env` file.
+- `SSH_PRIVATE_KEY`
+  - This is private key you generated in the previous step on the server.
+
+We're basically replicating our `.env` file with environment variables in your repo. After these are configured, you should be ready to create the workflow file.
+
+### Setting up the GitHub Action
+
+In the `.github/workflows/` directory of your repo, create a new workflow file, such as `deployment.yml`. This will be where we set up the new continous deployment workflow.
+
+The workflow for this site, looks nearly identical to the one below.
+
+```yaml
+name: Deployment
+on:
+  push:
+    branches: [main]
+concurrency: production
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: <your sites domain>
+    env:
+      MRSK_REGISTRY_PASSWORD: ${{ secrets.MRSK_REGISTRY_PASSWORD }}
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Install MRSK
+        run: gem install mrsk
+      - name: Deploy site
+        run: mrsk deploy
+```
+
+Here's a quick rundown of what's happening.
+
+The `concurrency: production` is used to ensure that only one single job or workflow runs at a time. This will permit one workflow to be queued to run the current job runs if you enqueue additional jobs, the previously queued one will be cancelled.
+
+The `environment` block is used to specify which environment this deployment is for (i.e. production, staging, etc.).
+
+```yaml
+environment:
+  name: production
+  url: <your sites domain>
+```
+
+This block states, that we're running in the `production` environment with the associated URL.
+
+```yaml
+- name: Setup SSH Agent
+  uses: webfactory/ssh-agent@v0.8.0
+  with:
+    ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+- name: Set up Docker Buildx
+  uses: docker/setup-buildx-action@v2
+- name: Install MRSK
+  run: gem install mrsk
+- name: Deploy site
+  run: mrsk deploy
+```
+
+The previous steps work as follows:
+
+1. Configure an SSH agent on your job container, using the private key you defined in **Environment secrets**
+2. Set up Docker Buildx, which is used by MRSK to build your container images
+3. Install MRSK on your job container
+4. Deploy the site (this step can take a while)
+
+## You made it 🎉
+
+That's it. Commit the changes to your repo. Now whenever you commit to your `main` branch a deployment will get triggered to publish the new container to your server. I'm far from being a Docker expert so I'm sure there's things I can do to optimize this and improve the time for deployment but for my purposes this works great for now. When running MRSK locally, you get the benefit of caching layers of your container image in buildx. This doesn't work with this method but definitely something worth investigating.
