@@ -14,7 +14,7 @@
     <div class="pb-4">
       <%= render Link.new(href: post_path(post.slug), underline: false) do %>
         <%= render Card.new do |card| %>
-          <%= card.with_title.with_content(post.title.titlecase) %>
+          <%= card.with_title.with_content(post.title) %>
           <%= card.with_subtitle do %>
             <%= render Blog::Post::PostedAt.new(date: post.created_at) %>
           <% end %>
