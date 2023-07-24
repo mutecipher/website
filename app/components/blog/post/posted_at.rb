@@ -4,6 +4,7 @@ class Blog::Post::PostedAt < ApplicationComponent
   end
 
   def formatted_date
-    distance_of_time_in_words(@date, Time.now)
+    time = Time.parse(@date)
+    Date.new(time.year, time.month, time.day).to_fs(:long)
   end
 end
