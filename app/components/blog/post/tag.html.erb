@@ -1,5 +1,5 @@
-<a href="<%= posts_path(tags: [@tag]) %>" class="no-underline">
-  <div class="px-4 py-1 text-xs font-semibold border rounded-full bg-zinc-100/50 hover:bg-zinc-50 border-zinc-300 max-w-fit dark:border-zinc-700 dark:bg-zinc-900 hover:dark:bg-zinc-800">
+<a href="<%= posts_path(tags: [@tag]) %>" class="p-2 my-1 no-underline border rounded-full bg-zinc-100/50 hover:bg-zinc-50 border-zinc-300 max-w-fit dark:border-zinc-700 dark:bg-zinc-900 hover:dark:bg-zinc-800">
+  <div class="text-xs font-semibold whitespace-nowrap">
     #<%= @tag.downcase %>
   </div>
 </a>
