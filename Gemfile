@@ -20,7 +20,6 @@ gem "turbo-rails"
 gem "view_component"
 
 group :development, :test do
-  gem "annotate"
   gem "debug"
   gem "flog"
   gem "standard"
