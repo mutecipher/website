@@ -1,5 +1,5 @@
 <%= content_for :head do %>
-  <%= render Head.new(title: @post.title.titlecase) %>
+  <%= render Head.new(title: @post.title) %>
 <% end %>
 <%= render Breadcrumb.new do |component| %>
   <% component.with_crumb(href: root_path) do %>

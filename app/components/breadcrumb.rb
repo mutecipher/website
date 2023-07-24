@@ -10,10 +10,10 @@ class Breadcrumb < ApplicationComponent
     def call
       content_tag(:li, class: "max-w-[120px] md:max-w-xs truncate") do
         if @active
-          content_tag(:span, content.titlecase, class: "font-semibold")
+          content_tag(:span, content, class: "font-semibold")
         else
           render Link.new(href: @href, underline: false) do
-            content.titlecase
+            content
           end
         end
       end
