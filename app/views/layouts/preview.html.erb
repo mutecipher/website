@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="antialiased bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
   <head>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag "application.rouge", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="w-full p-8 font-sans antialiased text-zinc-950 bg-zinc-50 scroll-smooth dark:bg-zinc-950 dark:text-zinc-50">
+  <body class="w-full font-sans scroll-smooth">
     <%= yield %>
   </body>
 </html>
