@@ -54,12 +54,9 @@ With that all set up, you now need to move over to your repo on GitHub. We need 
 
 From your repo, head to the **Settings** page. Click on **Secrets and variables** and select **Actions** from the dropdown. From here, you're going to need to create three **Environment secrets**.
 
-- `MRSK_REGISTRY_PASSWORD`
-  - If you have MRSK configured already, this should be in your `.env` file.
-- `RAILS_MASTER_KEY`
-  - Same as above. This should already exist in you `.env` file.
-- `SSH_PRIVATE_KEY`
-  - This is private key you generated in the previous step on the server.
+- `MRSK_REGISTRY_PASSWORD`: If you have MRSK configured already, this should be in your `.env` file.
+- `RAILS_MASTER_KEY`: Same as above. This should already exist in you `.env` file.
+- `SSH_PRIVATE_KEY`: This is private key you generated in the previous step on the server.
 
 We're basically replicating our `.env` file with environment variables in your repo. After these are configured, you should be ready to create the workflow file.
 
