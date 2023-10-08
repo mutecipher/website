@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: a5f113f4332b3688d4431a97fa517d1b9517ceb0
+  revision: a4d5f1d7399a1eb4823a91a6493f0f02f60994ae
   branch: main
   specs:
     actioncable (7.2.0.alpha)
@@ -192,7 +192,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     mutex_m (0.1.2)
-    net-imap (0.3.7)
+    net-imap (0.4.0)
       date
       net-protocol
     net-pop (0.1.2)
@@ -247,7 +247,7 @@ GEM
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.8.1)
-    reline (0.3.8)
+    reline (0.3.9)
       io-console (~> 0.5)
     rexml (3.2.6)
     rouge (4.1.3)
