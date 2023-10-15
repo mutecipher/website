@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: a4d5f1d7399a1eb4823a91a6493f0f02f60994ae
+  revision: 53438e9216243fb75400c8800ddf549daa52eab3
   branch: main
   specs:
     actioncable (7.2.0.alpha)
@@ -154,7 +154,7 @@ GEM
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
     io-console (0.6.0)
-    irb (1.8.1)
+    irb (1.8.3)
       rdoc
       reline (>= 0.3.8)
     json (2.6.3)
@@ -164,7 +164,7 @@ GEM
       kramdown (~> 2.0)
     language_server-protocol (3.17.0.3)
     lint_roller (1.1.0)
-    loofah (2.21.3)
+    loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     lookbook (2.1.1)
@@ -192,7 +192,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     mutex_m (0.1.2)
-    net-imap (0.4.0)
+    net-imap (0.4.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -218,7 +218,7 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
-    psych (5.1.0)
+    psych (5.1.1)
       stringio
     public_suffix (5.0.3)
     puma (6.4.0)
