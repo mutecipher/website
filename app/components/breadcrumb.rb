@@ -8,15 +8,21 @@ class Breadcrumb < ApplicationComponent
     end
 
     def call
-      content_tag(:li, class: "max-w-[120px] md:max-w-xs truncate") do
+      content_tag(:li, class: "max-w-[120px] md:max-w-xs") do
         if @active
-          content_tag(:span, content, class: "font-semibold")
+          content_tag(:span, formatted_content, class: "font-semibold")
         else
           render Link.new(href: @href, underline: false) do
-            content
+            formatted_content
           end
         end
       end
+    end
+
+    private
+
+    def formatted_content
+      content.truncate_words(5, omission: "...")
     end
   end
 end
