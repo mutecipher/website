@@ -158,7 +158,7 @@ GEM
     irb (1.10.1)
       rdoc
       reline (>= 0.3.8)
-    json (2.6.3)
+    json (2.7.1)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -208,7 +208,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
-    parallel (1.23.0)
+    parallel (1.24.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
@@ -246,7 +246,7 @@ GEM
     rdoc (6.6.2)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
-    regexp_parser (2.8.2)
+    regexp_parser (2.8.3)
     reline (0.4.1)
       io-console (~> 0.5)
     rexml (3.2.6)
@@ -281,7 +281,7 @@ GEM
     sqlite3 (1.6.9-arm64-darwin)
     sqlite3 (1.6.9-x86_64-linux)
     stackprof (0.2.25)
-    standard (1.32.0)
+    standard (1.32.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
       rubocop (~> 1.57.2)
